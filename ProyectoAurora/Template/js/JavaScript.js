@@ -7,7 +7,7 @@ $(document).ready(function(){
         
         $.ajax({
             type: 'POST',
-            url: '../Control/Control.php', 
+            url: '../Template/Control/Control.php', 
             data: $(this).serialize()
         })
         .done(function(data){
@@ -18,7 +18,7 @@ $(document).ready(function(){
             .fail(function() {
          
             // just in case posting your form failed
-            alert( "Posting failed." );
+            alert( "FALLOOO" );
              
         });
  
