@@ -562,6 +562,16 @@ var xml =
     '</realizaCobroRequest>'+
   '</soap:Body>'+
 '</soap:Envelope>';
+
+/*var xml ='<?xml version="1.0" encoding="utf-8"?>'+
+'<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+  '<soap:Body>'+
+    '<getAllBookRequest xmlns="http://localhost/PROYECTO/servidor.php">'+
+    '<key>1</key>'+
+    '</getAllBookRequest>'+
+  '</soap:Body>'+
+'</soap:Envelope>';*/
+
 xmlhttp.send(xml);
 
 	 xmlhttp.onreadystatechange=function() {
@@ -572,13 +582,40 @@ xmlhttp.send(xml);
 				txt += x[i].childNodes[0].nodeValue;
 			}
 			variableJS=txt;
-				
+			alert(variableJS);		
 		 }
 		 
 		};
 		
 		alert('hola');
-		alert(variableJS);
+		//alert(variableJS);
+		//alert("<td class='sorting_1'>1</td><td>Morrison Toni</td><td>0180</td><td>A Deepness in the Sky</td><td>TB</td><td>7.19</td><td>I</td><td>14.3</td><td>1.1</td><td></td>");
+		var cad = "<td class='sorting_1'>1</td><td>Morrison Toni</td><td>0180</td><td>A Deepness in the Sky</td><td>TB</td><td>7.19</td><td>I</td><td>14.3</td><td>1.1</td><td></td>";
+		
+		function limpia (cad){
+			var aux= cad.substring(22);
+			var tam = aux.length;
+			cad = aux.slice(0,tam-5);
+			return  cad.split("</td><td>");
+			//alert(typeof(res));
+		}
+		
+		var res = limpia(cad);
+		
+		function creaJson(cad){
+			alert(cad);
+			var keys = ['isbn','autor','codigo','titulo','resumen','costo','tipo','pvp','peso','inventario'];
+			var json = "{";
+			for(i=0;i<keys.length;i++){
+				var aux ='"'+keys[i]+'"';
+				json += aux.concat(":''"+cad[i]+"'',")
+			}
+			return json.slice(0,(json.length)-1)+"}";
+		}
+		
+		var js = creaJson(res);
+		//js = JSON.parse(js);
+		alert(js);
 </script>
 
 <script type="text/javascript" >
