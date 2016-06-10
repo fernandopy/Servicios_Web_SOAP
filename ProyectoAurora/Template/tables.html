@@ -223,7 +223,7 @@
                             
                         
                         </div>
-                        <button type="submit" class="btn btn-default" value="compra" id="compra">Comprar</button>
+                       
                     </div>
 
 <!-- ***********************************************************************************************************+++++++++ -->                    
@@ -411,17 +411,14 @@ xmlhttp.send(xml);
             if(res != null){
                 var js = creaJson(res);
                 var obj = JSON.parse(js);
+              	var lib = jsonQ(obj);
+                var x = confirm("DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
+                    	"PRECIO: $"+lib.find('pvp').value()+"\n\n");
+            	if(x == true){
+            		location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
+            	}
                 
-                var lib = jsonQ(obj);
-                //
                 
-                $("#compra").click(function(){ //para saber cuando se apriete el boto de compra manda el mensaje de confirmación  
-                	confirm("TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
-                        	"PRECIO: $"+lib.find('costo').value()+"\n\n");
-                	//"window.alert('chupas'+window.confirm('quierescomprar'))";
-                	 //(var valor = window.prompt('titulo','mensaje');
-                });
-               
             }
         }
         function takeMyRowAway(){
