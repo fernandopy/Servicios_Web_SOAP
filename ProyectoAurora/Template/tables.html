@@ -376,6 +376,65 @@ xmlhttp.send(xml);
  * */
 </script>
 
+<script>
+    function limpia (cad){
+        var test = cad.slice(0,3);
+        if(test!='<th'){
+            var aux= cad.substring(22);
+            var tam = aux.length;
+            cad = aux.slice(0,tam-5);
+            return  cad.split("</td><td>");
+            //alert(typeof(res));
+        }else return null;
+    }
+        function creaJson(cad){
+            var keys = ['isbn','autor','codigo','titulo','resumen','costo','tipo','pvp','peso','inventario'];
+            var json = "{";
+            for(i=0;i<keys.length;i++){
+                var aux ='"'+keys[i]+'"';
+                json += aux.concat(":''"+cad[i]+"'',");
+            }
+            return json.slice(0,(json.length)-1)+"}";
+        }
+        //js = JSON.parse(js);
+</script>
+    <script type="text/javascript">
+        //<![CDATA[
+        function valor_celda(celda){
+            //alert(celda.innerHTML);
+            var res = limpia(celda.innerHTML);
+            if(res != null){
+                var js = creaJson(res);
+                alert(js);
+            }
+        }
+        function takeMyRowAway(){
+            var tags_td = new Array();
+            var tags_id = new Array();
+            var tags_td=document.getElementsByTagName('tr');
+            for (i=0; i<tags_td.length; i++) {
+                if (tags_td[i].addEventListener) {   // IE9 y el resto
+                    tags_td[i].addEventListener ("click", function () {valor_celda(this);}, false);
+                } 
+                else {
+                    if (tags_td[i].attachEvent) {    // IE9 -
+                        tags_td[i].attachEvent ('onclick',  function () {valor_celda(this);}, false);
+                    }
+                }
+            }
+        }
+        window.onload = function()
+        {
+            takeMyRowAway();
+            /*$(".odd").dblclick(function(){    
+                takeMyRowAway();
+            });
+            $(".even").dblclick(function(){ 
+                takeMyRowAway();
+            });*/
+        };
+        //]]>
+    </script>
 
 
 
