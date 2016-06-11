@@ -211,13 +211,19 @@
                         <form role="form" id="userForm">
 <!-- ****************************************************************************************************************************+ -->
 
-                            <div class="form-group">
+                            	<div class="form-group">
+	                                <div class="form-group">
+	                                <label>Datos Libro</label>
+	                                <textarea class="form-control" rows="3" id="area"></textarea>
+                            	</div>
+                                
                                 <label>Mete Número de Cuenta</label>
                                 <input class="form-control" id='numCuenta' name='numCuenta'>
                                 <p class="help-block">Escribe Tu número de cuenta</p>
                                 <input class="form-control" id='importe' name='importe'>
                                 <p class="help-block">Importe</p>
-                                <button type="submit" class="btn btn-default" value="Submit">Submit Button</button>
+                                
+                                <button type="submit" class="btn btn-default" value="Submit">Comprar</button>
                             </div>
 <!-- ****************************************************************************************************************************+ -->
 
@@ -440,6 +446,18 @@
     
    
  <script src = "js/JavaScript.js"></script>
+ <script>
+ 	var cad = "";
+	cadVariables = location.search.substring(1,location.search.length);
+	arrVariables = cadVariables.split("&");
+	for (i=0; i<arrVariables.length; i++) {
+		arrVariableActual = arrVariables[i].split("=");
+		cad += unescape(arrVariableActual[1])+"\n";
+		
+	}
+	$('#area').html(cad);
+ </script>
+ 
 	
 </body>
 

@@ -412,15 +412,31 @@ xmlhttp.send(xml);
                 var js = creaJson(res);
                 var obj = JSON.parse(js);
               	var lib = jsonQ(obj);
-                var x = confirm("DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
-                    	"PRECIO: $"+lib.find('pvp').value()+"\n\n");
+              	var cadena = "DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
+            	"PRECIO: $"+lib.find('pvp').value()+"\n\n";
+                var x = confirm(cadena);
             	if(x == true){
-            		location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
+            		var nombres = "TITULO: "+lib.find('titulo').value()+","+"AUTOR: "+lib.find('autor').value()+","+
+                	"PRECIO: $"+lib.find('pvp').value()+"\n\n";
+            		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
+            		pasarVariables(pagina, nombres);
+            		//location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
             	}
-                
-                
             }
         }
+        /***************************PASAR VALORES DE UNA PÁGINA A OTRA por la url ************************************************************/
+        
+        function pasarVariables(pagina, nombres) {
+        	  pagina +="?";
+        	  nomVec = nombres.split(",");
+        	  for (i=0; i<nomVec.length; i++)
+        	      pagina += "var"+i+"=" + escape(nomVec[i])+"&";
+        	  pagina = pagina.substring(0,pagina.length-1);
+        	  alert(pagina);
+        	  location.href=pagina;
+        	}
+        
+        /************************************************************************************************************************/
         function takeMyRowAway(){
             var tags_td = new Array();
             var tags_id = new Array();
@@ -439,12 +455,7 @@ xmlhttp.send(xml);
         window.onload = function()
         {
             takeMyRowAway();
-            /*$(".odd").dblclick(function(){    
-                takeMyRowAway();
-            });
-            $(".even").dblclick(function(){ 
-                takeMyRowAway();
-            });*/
+            
         };
         //]]>
 </script>
