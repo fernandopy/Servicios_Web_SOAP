@@ -217,13 +217,22 @@
 	                                <textarea class="form-control" rows="3" id="area"></textarea>
                             	</div>
                                 
-                                <label>Mete Número de Cuenta</label>
+                                <label>Datos Cliente</label>
+                                <input class="form-control" id='nombre' name='nombre'>
+                                <p class="help-block">Nombre</p>
+                                
                                 <input class="form-control" id='numCuenta' name='numCuenta'>
-                                <p class="help-block">Escribe Tu número de cuenta</p>
-                                <input class="form-control" id='importe' name='importe'>
+                                <p class="help-block">Número de cuenta</p>
+                                
+                                <div class="form-group input-group">
+                                <span class="input-group-addon">$</span>
+                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
+                                <span class="input-group-addon">.00</span>
+                            </div>
                                 <p class="help-block">Importe</p>
                                 
                                 <button type="submit" class="btn btn-default" value="Submit">Comprar</button>
+                                <button type="submit" class="btn btn-default" value="Submit">Cancelar</button>
                             </div>
 <!-- ****************************************************************************************************************************+ -->
 
@@ -445,17 +454,33 @@
     <script src="js/bootstrap.min.js"></script>
     
    
- <script src = "js/JavaScript.js"></script>
+ 
  <script>
- 	var cad = "";
-	cadVariables = location.search.substring(1,location.search.length);
-	arrVariables = cadVariables.split("&");
-	for (i=0; i<arrVariables.length; i++) {
-		arrVariableActual = arrVariables[i].split("=");
-		cad += unescape(arrVariableActual[1])+"\n";
+ 	function datosLibros(){
+	 	var cad = "";
+		cadVariables = location.search.substring(1,location.search.length);
+		arrVariables = cadVariables.split("&");
+		for (i=0; i<arrVariables.length; i++) {
+			arrVariableActual = arrVariables[i].split("=");
+			cad += unescape(arrVariableActual[1])+"\n";
+			
+		}
+		$('#area').html(cad);
+		
+		return arrVariables[2];
+ 	}
+	function precio(val){
+		alert(val);
+		var arr = val.split("=");
+		var aux = unescape(arr[1]);
+		var aux1 = aux.split(":");
+		var aux2 = aux1[1].split("$");
+		alert(aux2[1]);
+		$('#importe').html(aux2[1]);
 		
 	}
-	$('#area').html(cad);
+	var val = datosLibros();
+	precio(val);
  </script>
  
 	
