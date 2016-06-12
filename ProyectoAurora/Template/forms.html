@@ -207,9 +207,9 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-
-                        <form role="form" id="userForm">
 <!-- ****************************************************************************************************************************+ -->
+                        <form role="form">
+
 
                             	<div class="form-group">
 	                                <div class="form-group">
@@ -218,10 +218,10 @@
                             	</div>
                                 
                                 <label>Datos Cliente</label>
-                                <input class="form-control" id='nombre' name='nombre'>
+                                <input class="form-control" id='nombre' name='nombre' value="perro">
                                 <p class="help-block">Nombre</p>
                                 
-                                <input class="form-control" id='numCuenta' name='numCuenta'>
+                                <input class="form-control" id='numCuenta' name='numCuenta' value="10">
                                 <p class="help-block">Número de cuenta</p>
                                 
                                 <div class="form-group input-group">
@@ -231,7 +231,7 @@
                             </div>
                                 <p class="help-block">Importe</p>
                                 
-                                <button type="submit" class="btn btn-default" value="Submit">Comprar</button>
+                                <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
                                 <button type="submit" class="btn btn-default" value="Submit">Cancelar</button>
                             </div>
 <!-- ****************************************************************************************************************************+ -->
@@ -456,7 +456,8 @@
    
  
  <script>
- 	function datosLibros(){
+ 
+ /*	function datosLibros(){
 	 	var cad = "";
 		cadVariables = location.search.substring(1,location.search.length);
 		arrVariables = cadVariables.split("&");
@@ -480,9 +481,53 @@
 		
 	}
 	var val = datosLibros();
-	precio(val);
+	precio(val);*/
  </script>
  
+ <script>
+$('#compra').click(function() {
+	 
+	//function display (){
+	 alert("**************************************");
+	 var variableJS="mela pe";
+		var txt="";
+		var x ="";
+		 var xmlhttp = new XMLHttpRequest();
+		 xmlhttp.open("POST", "http://localhost/PROYECTO/nuSoap.php",true);
+			xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
+			xmlhttp.setRequestHeader("Content-Type", "text/xml");
+			var xml =
+				 '<?xml version="1.0" encoding="utf-8"?>'+
+				 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+				   '<soap:Body>'+
+				     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/nuSoap.php">'+
+				     '<datos>'+
+				 	    '<numCuenta>10</numCuenta>'+
+				 	    '<importe>200</importe>'+ 
+				     '</datos>'+
+				     '</realizaCobroRequest>'+
+				   '</soap:Body>'+
+				 '</soap:Envelope>';
+
+
+		xmlhttp.send(xml);
+	
+		 xmlhttp.onload=function() {
+	 		
+	 	 	if (xmlhttp.readyState == 4){
+	 			x= xmlhttp.responseXML.getElementsByTagName("return");
+	 			for (i = 0; i < x.length; i++){
+	 				txt += x[i].childNodes[0].nodeValue;
+	 			}
+	 			variableJS=txt;
+	 				alert(txt);	
+	 		 }
+	 		 
+	 	}
+ 	
+});
+
+ </script>
 	
 </body>
 
