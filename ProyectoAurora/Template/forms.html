@@ -191,7 +191,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Venta
+                            Compra Libro
                         </h1>
                         <!--  ol class="breadcrumb">
                             <li>
@@ -209,39 +209,35 @@
                     <div class="col-lg-6">
 <!-- ****************************************************************************************************************************+ -->
                         <form role="form">
-
+								<h1>Venta</h1>
 
                             	<div class="form-group">
+		                                <label>Datos Libro</label>
+		                                <textarea class="form-control" rows="3" id="area" disabled></textarea>
+	                            	<br><br>
+	                                <label>Datos Cliente</label>
+	                                <p class="help-block">Nombre</p>
+	                                <input class="form-control" id='nombre' name='nombre'>
+	                                <p class="help-block">Número de cuenta</p>
+	                                <input class="form-control" id='numCuenta' name='numCuenta' value="10">
+	                                <p class="help-block">Importe</p>
+	                                <div class="form-group input-group">
+		                                <span class="input-group-addon">$</span>
+		                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
+		                                <span class="input-group-addon">.00</span>
+	                            	</div>
+	                            	
 	                                <div class="form-group">
-	                                <label>Datos Libro</label>
-	                                <textarea class="form-control" rows="3" id="area" disabled></textarea>
+		                                <label>Elige Tú Banco</label>
+		                                <select class="form-control" id="banco">
+		                                    <option value=0>American Express</option>
+		                                    <option value=1>Banco Azteca</option>
+		                                    
+		                                </select>
+	                            	</div>
+	                                <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
+	                                <button type="button" class="btn btn-default" value="Submit" id="cancelar">Cancelar</button>
                             	</div>
-                                
-                                <label>Datos Cliente</label>
-                                <input class="form-control" id='nombre' name='nombre'>
-                                <p class="help-block">Nombre</p>
-                                
-                                <input class="form-control" id='numCuenta' name='numCuenta' value="10">
-                                <p class="help-block">Número de cuenta</p>
-                                
-                                <div class="form-group input-group">
-	                                <span class="input-group-addon">$</span>
-	                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
-	                                <span class="input-group-addon">.00</span>
-                            	</div>
-                            	<p class="help-block">Importe</p>
-                                
-                                <div class="form-group">
-                                <label>Elige Tú Banco</label>
-                                <select class="form-control" id="banco">
-                                    <option value=0>American Express</option>
-                                    <option value=1>Banco Azteca</option>
-                                    
-                                </select>
-                            </div>
-                                <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
-                                <button type="button" class="btn btn-default" value="Submit" href="index.html">Cancelar</button>
-                            </div>
 <!-- ****************************************************************************************************************************+ -->
 
                             <div class="form-group">
@@ -296,38 +292,6 @@
                                 </label>
                             </div>
 
-                            <!-- div class="form-group">
-                                <label>Radio Buttons</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Inline Radio Buttons</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                </label>
-                            </div-->
-
                             <div class="form-group">
                                 <label>Selects</label>
                                 <select class="form-control">
@@ -356,20 +320,41 @@
                         </form>
 
                     </div>
+<!--/******************************************ENVIO********************************************************************************/-->
                     <div class="col-lg-6">
-                        <h1>Disabled Form States</h1>
+                        <h1>Envio</h1>
 
                         <form role="form">
-
-                            <fieldset disabled>
+							<label>Datos Cliente</label>	
+							<p class="help-block">Nombre</p>
+							<input class="form-control" id='nombreEnvio' name='nombre' disabled>
+							<p class="help-block">Dirección</p>
+	                    	<input class="form-control" id='dirEnvio' name='nombre'>
+	                    	<p class="help-block">Peso Libro</p>
+	                    	<div class="form-group input-group">
+		                         <textarea class="form-control" rows="1" id="peso" disabled></textarea>
+		                         <span class="input-group-addon">Peso</span>
+		                    </div>
+	                        
+	                        
+	                         <div class="form-group">
+		                     	<label>Elige Tipo de Envio</label>
+		                        <select class="form-control" id="tipoEnvio">
+		                        	<option value=0>Nacional</option>
+		                            <option value=1>Internacional</option>
+		                        </select>
+	                         </div>
+	                         <button type="button" class="btn btn-default" value="Submit" id="aceptar">Aceptar</button>
+	                         <button type="button" class="btn btn-default" value="Submit" id="cancelarEnvio">Cancelar</button>       
+                            <!--fieldset disabled>
 
                                 <div class="form-group">
-                                    <label for="disabledSelect">Disabled input</label>
+                                    <label for="disabledSelect">Datos para el envio</label>
                                     <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="disabledSelect">Disabled select menu</label>
+                                    <label for="disabledSelect">Datos Para el Envio</label>
                                     <select id="disabledSelect" class="form-control">
                                         <option>Disabled select</option>
                                     </select>
@@ -383,10 +368,10 @@
 
                                 <button type="submit" class="btn btn-primary">Disabled Button</button>
 
-                            </fieldset>
+                            </fieldset-->
 
                         </form>
-
+<!--/********************************************************FIN ENVIO********************************************************************/  -->
                         <h1>Form Validation</h1>
 
                         <form role="form">
@@ -464,12 +449,14 @@
    
  
  <script>
- 
- 	function datosLibros(){
+    var nombre = "";
+    var pesoLib;
+ 	var cadVariables = location.search.substring(1,location.search.length);
+	var arrVariables = cadVariables.split("&");
+	
+ 	function datosLibros(arr){
 	 	var cad = "";
-		cadVariables = location.search.substring(1,location.search.length);
-		arrVariables = cadVariables.split("&");
-		for (i=0; i<arrVariables.length; i++) {
+		for (i=0; i<arrVariables.length-1; i++) {
 			arrVariableActual = arrVariables[i].split("=");
 			cad += unescape(arrVariableActual[1])+"\n";
 			
@@ -478,18 +465,25 @@
 		
 		return arrVariables[2];
  	}
-	function precio(val){
-		alert(val);
+	function precio(val){//separa el precio de el libro
 		var arr = val.split("=");
 		var aux = unescape(arr[1]);
 		var aux1 = aux.split(":");
 		var aux2 = aux1[1].split("$");
-		alert(aux2[1]);
 		$('#importe').html(aux2[1]);
 		
 	}
-	var val = datosLibros();
+	function peso(val){//separa el precio de el libro
+		var arr = val.split("=");
+		var aux = unescape(arr[1]);
+		var aux1 = aux.split(":");
+		pesoLib = aux1[1];
+		$('#peso').html(pesoLib);
+		
+	}
+	var val = datosLibros(arrVariables);
 	precio(val);
+	
  </script>
  
  <script>
@@ -497,47 +491,108 @@ $('#compra').click(function() {
 	
 	var banco = $("#banco").val();
 	if (banco == "0"){
-     var cuenta = $("#numCuenta").val();
-	 var importe = parseInt($("#importe").val());
-	 var variableJS="mela pe";
-		var txt="";
-		var x ="";
-		 var xmlhttp = new XMLHttpRequest();
-		 xmlhttp.open("POST", "http://localhost/PROYECTO/nuSoap.php",true);
-			xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
-			xmlhttp.setRequestHeader("Content-Type", "text/xml");
-			var xml =
-				 '<?xml version="1.0" encoding="utf-8"?>'+
-				 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
-				   '<soap:Body>'+
-				     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/nuSoap.php">'+
-				     '<datos>'+
-				 	    '<numCuenta>'+cuenta+'</numCuenta>'+
-				 	    '<importe>'+importe+'</importe>'+ 
-				     '</datos>'+
-				     '</realizaCobroRequest>'+
-				   '</soap:Body>'+
-				 '</soap:Envelope>';
-
-
-		xmlhttp.send(xml);
+	     var cuenta = $("#numCuenta").val();
+		 var importe = parseInt($("#importe").val());
+		 var variableJS="mela pe";
+			var txt="";
+			var x ="";
+			 var xmlhttp = new XMLHttpRequest();
+			 xmlhttp.open("POST", "http://localhost/PROYECTO/nuSoap.php",true);
+				xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
+				xmlhttp.setRequestHeader("Content-Type", "text/xml");
+				var xml =
+					 '<?xml version="1.0" encoding="utf-8"?>'+
+					 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+					   '<soap:Body>'+
+					     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/nuSoap.php">'+
+					     '<datos>'+
+					 	    '<numCuenta>'+cuenta+'</numCuenta>'+
+					 	    '<importe>'+importe+'</importe>'+ 
+					     '</datos>'+
+					     '</realizaCobroRequest>'+
+					   '</soap:Body>'+
+					 '</soap:Envelope>';
 	
-		 xmlhttp.onload=function() {
-	 		
-	 	 	if (xmlhttp.readyState == 4){
-	 			x= xmlhttp.responseXML.getElementsByTagName("return");
-	 			for (i = 0; i < x.length; i++){
-	 				txt += x[i].childNodes[0].nodeValue;
-	 			}
-	 			variableJS=txt;
-	 				alert(txt);	
-	 		 }
-	 	}
+	
+			xmlhttp.send(xml);
+		
+			 xmlhttp.onload=function() {
+		 		
+		 	 	if (xmlhttp.readyState == 4){
+		 			x= xmlhttp.responseXML.getElementsByTagName("return");
+		 			for (i = 0; i < x.length; i++){
+		 				txt += x[i].childNodes[0].nodeValue;
+		 			}
+		 			variableJS=txt;
+		 				alert(txt);	
+		 		 }
+		 	}
+			 
 	}// fin if
+	else{
+		alert("Temporalmente Sin servicio");
+	}
+		nombre = $("#nombre").val();
+	 $("#nombreEnvio").val(nombre);
+		
+	 peso(arrVariables[3]);//para escribir el peso en el combobox
 });
 
  </script>
+<script>
+$('#cancelar').click(function() {
+	location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/index.html";
+});
+
+$('#cancelarEnvio').click(function() {
+	location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/index.html";
+});
+</script>
+
+<script>
+$('#aceptar').click(function() {
+			//alert(tipoEnvio);
+			alert(nombre);
+			alert(pesoLib);
+			alert($('#tipoEnvio').val());	
+		 /*var variableJS="mela pe";
+			var txt="";
+			var x ="";
+			 var xmlhttp = new XMLHttpRequest();
+			 xmlhttp.open("POST", "http://localhost/PROYECTO/nuSoap.php",true);
+				xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
+				xmlhttp.setRequestHeader("Content-Type", "text/xml");
+				var xml =
+					 '<?xml version="1.0" encoding="utf-8"?>'+
+					 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+					   '<soap:Body>'+
+					     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/nuSoap.php">'+
+					     '<datos>'+
+					 	    '<numCuenta>'+cuenta+'</numCuenta>'+
+					 	    '<importe>'+importe+'</importe>'+ 
+					     '</datos>'+
+					     '</realizaCobroRequest>'+
+					   '</soap:Body>'+
+					 '</soap:Envelope>';
 	
+	
+			xmlhttp.send(xml);
+		
+			 xmlhttp.onload=function() {
+		 		
+		 	 	if (xmlhttp.readyState == 4){
+		 			x= xmlhttp.responseXML.getElementsByTagName("return");
+		 			for (i = 0; i < x.length; i++){
+		 				txt += x[i].childNodes[0].nodeValue;
+		 			}
+		 			variableJS=txt;
+		 				alert(txt);	
+		 		 }
+		 	}*/
+});
+
+
+</script>
 </body>
 
 </html>

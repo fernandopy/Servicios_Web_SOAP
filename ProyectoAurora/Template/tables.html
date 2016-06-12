@@ -369,7 +369,7 @@ xmlhttp.send(xml);
                 var x = confirm(cadena);
             	if(x == true){
             		var nombres = "Titulo: "+lib.find('titulo').value()+","+"Autor: "+lib.find('autor').value()+","+
-                	"Precio: $"+lib.find('pvp').value()+"\n\n";
+                	"Precio: $"+lib.find('pvp').value()+","+"Peso: "+lib.find('peso').value()+"\n\n";
             		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
             		pasarVariables(pagina, nombres);
             		//location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
