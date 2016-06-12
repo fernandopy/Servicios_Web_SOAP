@@ -69,6 +69,7 @@
 	                                </div>
                             	
 	                            	<button type="button" class="btn btn-default" value="rastreo" id="rastreo">Rastrear</button>
+	                            	<button type="button" class="btn btn-default" value="Submit" id="cancelar">Cancelar</button>
 	                                <br><br>
 	                                <div class="form-group">
 	                                	<label>Ubicación</label>
@@ -103,9 +104,7 @@
 $('#rastreo').click(function() {
 	
 	$('#rasteroText').val('Ya mero llega');
-	/*var banco = $("#banco").val();
-	if (banco == "0"){
-     var cuenta = $("#numCuenta").val();
+	 /*var cuenta = $("#numCuenta").val();
 	 var importe = parseInt($("#importe").val());
 	 var variableJS="mela pe";
 		var txt="";
@@ -140,11 +139,17 @@ $('#rastreo').click(function() {
 	 			variableJS=txt;
 	 				alert(txt);	
 	 		 }
-	 	}
-	}// fin if*/
+	 	}*/
 });
 
- </script>
+</script>
+ 
+<script>
+$('#cancelar').click(function() {
+	location.href = "index.html";
+});
+</script>
+ 
 	
 </body>
 
