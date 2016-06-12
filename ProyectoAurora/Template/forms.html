@@ -225,11 +225,22 @@
                                 <p class="help-block">Número de cuenta</p>
                                 
                                 <div class="form-group input-group">
-                                <span class="input-group-addon">$</span>
-                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
-                                <span class="input-group-addon">.00</span>
+	                                <span class="input-group-addon">$</span>
+	                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
+	                                <span class="input-group-addon">.00</span>
+                            	</div>
+                            	<p class="help-block">Importe</p>
+                                
+                                <div class="form-group">
+                                <label>Elige Tú Banco</label>
+                                <select class="form-control" id="banco">
+                                    <option value=0>American Express</option>
+                                    <option value=1>Banco Azteca</option>
+                                    
+                                </select>
                             </div>
-                                <p class="help-block">Importe</p>
+                                
+                                
                                 
                                 <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
                                 <button type="button" class="btn btn-default" value="Submit" >Cancelar</button>
@@ -487,8 +498,10 @@
  <script>
 $('#compra').click(function() {
 	
-     var cuenta = $("#numCuenta").val()
-	 var importe = parseInt($("#importe").val())
+	var banco = $("#banco").val();
+	if (banco == "0"){
+     var cuenta = $("#numCuenta").val();
+	 var importe = parseInt($("#importe").val());
 	 var variableJS="mela pe";
 		var txt="";
 		var x ="";
@@ -523,6 +536,7 @@ $('#compra').click(function() {
 	 				alert(txt);	
 	 		 }
 	 	}
+	}// fin if
 });
 
  </script>
