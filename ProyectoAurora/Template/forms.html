@@ -232,7 +232,7 @@
                                 <p class="help-block">Importe</p>
                                 
                                 <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
-                                <button type="submit" class="btn btn-default" value="Submit">Cancelar</button>
+                                <button type="button" class="btn btn-default" value="Submit" >Cancelar</button>
                             </div>
 <!-- ****************************************************************************************************************************+ -->
 
@@ -457,7 +457,7 @@
  
  <script>
  
- /*	function datosLibros(){
+ 	function datosLibros(){
 	 	var cad = "";
 		cadVariables = location.search.substring(1,location.search.length);
 		arrVariables = cadVariables.split("&");
@@ -481,14 +481,14 @@
 		
 	}
 	var val = datosLibros();
-	precio(val);*/
+	precio(val);
  </script>
  
  <script>
 $('#compra').click(function() {
-	 
-	//function display (){
-	 alert("**************************************");
+	
+	var cuenta = $("#numCuenta").val()
+	var importe = parseInt($("#importe").val())
 	 var variableJS="mela pe";
 		var txt="";
 		var x ="";
@@ -502,8 +502,8 @@ $('#compra').click(function() {
 				   '<soap:Body>'+
 				     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/nuSoap.php">'+
 				     '<datos>'+
-				 	    '<numCuenta>10</numCuenta>'+
-				 	    '<importe>200</importe>'+ 
+				 	    '<numCuenta>'+cuenta+'</numCuenta>'+
+				 	    '<importe>'+importe+'</importe>'+ 
 				     '</datos>'+
 				     '</realizaCobroRequest>'+
 				   '</soap:Body>'+
