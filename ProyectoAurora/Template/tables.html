@@ -134,7 +134,6 @@ xmlhttp.send(xml);
 
 <script type="text/javascript" >
   	
-	//var variableJS = @datos@;
 	//Builds the HTML Table out of myList.
 	$(document).ready(function(){
 	//alert(variableJS);
@@ -189,7 +188,7 @@ xmlhttp.send(xml);
             //alert(typeof(res));
         }else return null;
     }
-        function creaJson(cad){
+    function creaJson(cad){
             var keys = ['isbn','autor','codigo','titulo','resumen','costo','tipo','pvp','peso','inventario'];
             var json = "{";
             for(i=0;i<keys.length;i++){
@@ -197,7 +196,7 @@ xmlhttp.send(xml);
                 json += aux.concat(':"'+cad[i]+'",');
             }
             return json.slice(0,(json.length)-1)+"}";
-        }
+    }
         //js = JSON.parse(js);
 </script>
 <script type="text/javascript">
@@ -254,7 +253,7 @@ xmlhttp.send(xml);
             takeMyRowAway();
             
         };
-        //]]>
+        
 </script>
 </body>
 

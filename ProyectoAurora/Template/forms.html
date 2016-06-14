@@ -203,7 +203,7 @@
 		$('#importe').html(aux2[1]);
 		
 	}
-	function peso(val){//separa el precio de el libro
+	function getDato(val){//separa el precio de el libro
 		var arr = val.split("=");
 		var aux = unescape(arr[1]);
 		var aux1 = aux.split(":");
@@ -264,10 +264,11 @@ $('#compra').click(function() {
 		 				txt += x[i].childNodes[0].nodeValue;
 		 			}
 		 			variableJS=txt;
-		 			alert(txt);	
+		 			alert(txt);
+		 			muestra(variableJS);
 		 		 }
 		 	}
-			 
+			 //alert("valor" + variableJS);		 
 	}// fin if
 	else{
 		alert("Temporalmente Sin servicio");
@@ -275,19 +276,28 @@ $('#compra').click(function() {
 		nombre = $("#nombre").val();
 	 $("#nombreEnvio").val(nombre);
 		
-	 peso(arrVariables[3]);//para escribir el peso en el combobox
+	 getDato(arrVariables[3]);//para escribir el peso en el combobox
 	 
 	 /*VALIDA QUE DIV MOSTRAR DEPENDIENDO DEL TIPO DE LIBRO*********************/
+	 
+	 
 	 tipoLib = tipoLibro(arrVariables[4]);
 	 function trim (cad){//elimina espacios al inicio y al final de lacadena
 	 	 return cad.replace(/^\s+/g,'').replace(/\s+$/g,'');
 	 }
 
 
-	 if (trim(tipoLib)=='D'){
-	 	$('#hosting').show();
-	 }else{
-	 	 $('#flete').show();
+	 function muestra(exito){
+		 var exit = parseInt(exito);
+		 if (trim(tipoLib)=='D' && exit == 1 ){
+		 	$('#hosting').show();
+		 }else if (trim(tipoLib)=='I' && exit == 1)
+			 $('#flete').show();
+		 else if (exit==0){
+		 	 alert("NO te alcanza el Dinero");
+		 }else {
+			 alert("No existe el usuario");
+		 }
 	 }
 	 /***************************************************/
 		 

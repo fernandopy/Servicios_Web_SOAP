@@ -19,8 +19,6 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	    
 </head>
 
 <body>
@@ -64,7 +62,7 @@
 
                             	<div class="form-group">
 	                                <div class="form-group">
-		                                <input class="form-control" id='flete' name='flete'>
+		                                <input class="form-control" id='numflete' name='flete'>
 		                                <p class="help-block">Ingresa tu número de flete </p>
 	                                </div>
                             	
@@ -98,31 +96,27 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     
-   
- 
  <script>
 $('#rastreo').click(function() {
-	
-	$('#rasteroText').val('Ya mero llega');
-	 /*var cuenta = $("#numCuenta").val();
+	var numFlete;
+	numFlete= $('#numflete').val();
+	//$('#rasteroText').val('Ya mero llega');
+	 var cuenta = $("#numCuenta").val();
 	 var importe = parseInt($("#importe").val());
 	 var variableJS="mela pe";
 		var txt="";
 		var x ="";
 		 var xmlhttp = new XMLHttpRequest();
-		 xmlhttp.open("POST", "http://localhost/PROYECTO/nuSoap.php",true);
-			xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
+		 xmlhttp.open("POST", "http://localhost/PROYECTO/Fletes/fleteServer.php",true);
+			xmlhttp.setRequestHeader("SOAPAction", "urn:fleteServer#rastreo");
 			xmlhttp.setRequestHeader("Content-Type", "text/xml");
 			var xml =
 				 '<?xml version="1.0" encoding="utf-8"?>'+
 				 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
 				   '<soap:Body>'+
-				     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/nuSoap.php">'+
-				     '<datos>'+
-				 	    '<numCuenta>'+cuenta+'</numCuenta>'+
-				 	    '<importe>'+importe+'</importe>'+ 
-				     '</datos>'+
-				     '</realizaCobroRequest>'+
+				     '<rastreoRequest xmlns="http://localhost/PROYECTO/Fletes/fleteServer.php">'+
+				      '<id_flete>'+numFlete+'</id_flete>'+
+				 	 '</rastreoRequest>'+
 				   '</soap:Body>'+
 				 '</soap:Envelope>';
 
@@ -137,9 +131,10 @@ $('#rastreo').click(function() {
 	 				txt += x[i].childNodes[0].nodeValue;
 	 			}
 	 			variableJS=txt;
-	 				alert(txt);	
+	 				//alert(txt);
+	 				$('#rasteroText').val(txt);
 	 		 }
-	 	}*/
+	 	}
 });
 
 </script>
