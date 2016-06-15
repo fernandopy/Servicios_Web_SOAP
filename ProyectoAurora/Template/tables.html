@@ -97,7 +97,7 @@ var txt="";
 var x ="";
 	
 var xmlhttp = new XMLHttpRequest();
-xmlhttp.open("POST", "http://localhost/PROYECTO/servidor.php",true);
+xmlhttp.open("POST", "http://localhost/PROYECTO/Editorial/EditorialCarlos/servidor.php",true);
 xmlhttp.setRequestHeader("SOAPAction", "urn:miServidor#obtenerDatos");
 
 
@@ -107,7 +107,7 @@ xmlhttp.setRequestHeader("Content-Type", "text/xml");
 var xml ='<?xml version="1.0" encoding="utf-8"?>'+
 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
   '<soap:Body>'+
-    '<getAllBookRequest xmlns="http://localhost/PROYECTO/servidor.php">'+
+    '<getAllBookRequest xmlns="http://localhost/PROYECTO/Editorial/EditorialCarlos/servidor.php">'+
     '<key>0</key>'+
     '</getAllBookRequest>'+
   '</soap:Body>'+
