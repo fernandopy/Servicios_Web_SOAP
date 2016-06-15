@@ -136,8 +136,8 @@
 								<p class="help-block">Nombre</p>
 								<input class="form-control" id='nombreHost' name='nombreHost' disabled>
 								
-								<p class="help-block">Correo</p>
-								<input class="form-control" id='nombreHost' name='correoHost'>
+								<p class="help-block">Id Pago</p>
+								<input class="form-control" id='pagoHost' name='correoHost' value="1000">
 								
 								<p class="help-block">Peso Libro</p>
 								<div class="form-group input-group">
@@ -147,10 +147,14 @@
 								
 		                         <button type="button" class="btn btn-default" value="Submit" id="aceptarhosting">Aceptar</button>
 		                         <button type="button" class="btn btn-default" value="Submit" id="cancelarHosting">Cancelar</button>       
-	                            	
-	                             <p class="help-block">Datos Hosting</p>
-		                    	 <div class="form-group input-group">
-			                         <textarea class="form-control" rows="2" id="datoshosting" disabled></textarea>
+	                            
+	                            <div class="form-group input-group">
+		                    	 <br><br>
+		                    	 <label>Datos Hosting</label>
+			                        <p class="help-block">Usuario</p> 
+			                        <textarea class="form-control" rows="1" id="usuariohosting" disabled></textarea>
+			                         <p class="help-block">Contraseña</p>
+			                         <textarea class="form-control" rows="1" id="contrahosting" disabled></textarea>
 			                    </div>
 		                 </form>
 						</div>
@@ -379,47 +383,48 @@ $('#aceptarFlete').click(function() {
 
 </script>
 <script>
+/******************************************ME CONECTO AL HOSTING**************************************************+*/
 $('#aceptarhosting').click(function() {
-	/*var banco = $("#banco").val();
-	if (banco == "0"){
-	     var cuenta = $("#numCuenta").val();
-		 var importe = parseInt($("#importe").val());
-		 var variableJS="mela pe";
-			var txt="";
-			var x ="";
-			 var xmlhttp = new XMLHttpRequest();
-			 xmlhttp.open("POST", "http://localhost/PROYECTO/Banco/nuSoap.php",true);
-				xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
-				xmlhttp.setRequestHeader("Content-Type", "text/xml");
-				var xml =
-					 '<?xml version="1.0" encoding="utf-8"?>'+
-					 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
-					   '<soap:Body>'+
-					     '<realizaCobroRequest xmlns="http://localhost/PROYECTO/Banco/nuSoap.php">'+
-					     '<datos>'+
-					 	    '<numCuenta>'+cuenta+'</numCuenta>'+
-					 	    '<importe>'+importe+'</importe>'+ 
-					     '</datos>'+
-					     '</realizaCobroRequest>'+
-					   '</soap:Body>'+
-					 '</soap:Envelope>';
-	
-	
-			xmlhttp.send(xml);
+	var nombre = $('#nombreHost').val();
+	var pago = $('#pagoHost').val();
+	var peso = parseInt($('#pesoHost').val());
+	var variableJS="mela pe";
+	var txt="";
+	var x ="";
+	 var xmlhttp = new XMLHttpRequest();
+	 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
+		xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#contratarHosting");
+		xmlhttp.setRequestHeader("Content-Type", "text/xml");
+		var xml =
+			 '<?xml version="1.0" encoding="utf-8"?>'+
+			 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+			   '<soap:Body>'+
+			     '<contratarHostingRequest xmlns="http://localhost/PROYECTO/Central/conexionServicios.php">'+
+			     '<datosContratar>'+
+			 	    '<id_pago>'+pago+'</id_pago>'+
+			 	    '<usuario>'+nombre+'</usuario>'+
+			 	   	'<tam>'+peso+'</tam>'+
+			 	 '</datosContratar>'+
+			     '</contratarHostingRequest>'+
+			   '</soap:Body>'+
+			 '</soap:Envelope>';
+		xmlhttp.send(xml);
 		
-			 xmlhttp.onload=function() {
+					 xmlhttp.onload=function() {
 		 		
 		 	 	if (xmlhttp.readyState == 4){
 		 			x= xmlhttp.responseXML.getElementsByTagName("return");
-		 			for (i = 0; i < x.length; i++){
-		 				txt += x[i].childNodes[0].nodeValue;
-		 			}
-		 			variableJS=txt;
-		 			alert(txt);
-		 			muestra(variableJS);
+		 				var usuario = x[0].firstChild.textContent;
+		 				var contra = x[0].lastChild.textContent;
+		 				$('#usuariohosting').val(usuario);
+		 				$('#contrahosting').val(contra);
+		 			//alert(x[0].firstChild.attributes.tagName);   
+		 			//$('#datoshosting').val(txt);
 		 		 }
-		 	}*/
+		 	}
 });
+/******************************************FIN HOSTING**************************************************+*/
+
 </script>
 </body>
 
