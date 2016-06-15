@@ -68,39 +68,52 @@
                 <div class="row">
 <!-- ****************************************************************************************************************************+ -->
 
-                    <div class="col-lg-6">
-                        <form role="form">
-								<h1>Venta</h1>
-
-                            	<div class="form-group">
-		                                <label>Datos Libro</label>
-		                                <textarea class="form-control" rows="3" id="area" disabled></textarea>
-	                            	<br><br>
-	                                <label>Datos Cliente</label>
-	                                <p class="help-block">Nombre</p>
-	                                <input class="form-control" id='nombre' name='nombre' value="Ruben Fernando">
-	                                <p class="help-block">Número de cuenta</p>
-	                                <input class="form-control" id='numCuenta' name='numCuenta' value="10" >
-	                                <p class="help-block">Importe</p>
-	                                <div class="form-group input-group">
-		                                <span class="input-group-addon">$</span>
-		                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
-		                                <span class="input-group-addon">.00</span>
+	                    <div class="col-lg-6">
+	                    <div id="venta">
+	                        <form role="form">
+									<h1>Venta</h1>
+	
+	                            	<div class="form-group">
+			                                <label>Datos Libro</label>
+			                                <textarea class="form-control" rows="3" id="area" disabled></textarea>
+		                            	<br><br>
+		                                <label>Datos Cliente</label>
+		                                <p class="help-block">Nombre</p>
+		                                <input class="form-control" id='nombre' name='nombre' value="Ruben Fernando">
+		                                <p class="help-block">Número de cuenta</p>
+		                                <input class="form-control" id='numCuenta' name='numCuenta' value="10" >
+		                                <p class="help-block">Importe</p>
+		                                <div class="form-group input-group">
+			                                <span class="input-group-addon">$</span>
+			                                <textarea class="form-control" rows="1" id="importe" disabled></textarea>
+			                                <span class="input-group-addon">.00</span>
+		                            	</div>
+		                            	
+		                                <div class="form-group">
+			                                <label>Elige Tú Banco</label>
+			                                <select class="form-control" id="banco">
+			                                    <option value=0>American Express</option>
+			                                    <option value=1>Banco Azteca</option>
+			                                    
+			                                </select>
+		                            	</div>
+		                                <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
+		                                <button type="button" class="btn btn-default" value="Submit" id="cancelar">Cancelar</button>
 	                            	</div>
-	                            	
-	                                <div class="form-group">
-		                                <label>Elige Tú Banco</label>
-		                                <select class="form-control" id="banco">
-		                                    <option value=0>American Express</option>
-		                                    <option value=1>Banco Azteca</option>
-		                                    
-		                                </select>
-	                            	</div>
-	                                <button type="button" class="btn btn-default" value="Submit" id="compra">Comprar</button>
-	                                <button type="button" class="btn btn-default" value="Submit" id="cancelar">Cancelar</button>
-                            	</div>
-							</form>
-						</div>
+								</form>
+							</div>
+								<div id="numFlete" hidden>
+									<p class="help-block">Número de Flete</p>
+			                   		<input class="form-control" id='areaflete' name='flete' disabled>
+			                	</div>
+			                	<div id="datosHosting" hidden>
+			                		<label>Datos Hosting</label>
+			                        <p class="help-block">Usuario</p> 
+			                        <textarea class="form-control" rows="1" id="usuariohosting" disabled></textarea>
+			                         <p class="help-block">Contraseña</p>
+			                         <textarea class="form-control" rows="1" id="contrahosting" disabled></textarea>
+			                	</div>
+							</div>
 <!-- ********************************************FIN VENTA********************************************************************************+ -->
 						
 <!--/******************************************ENVIO********************************************************************************/-->
@@ -120,10 +133,10 @@
 		                         <button type="button" class="btn btn-default" value="Submit" id="aceptarFlete">Aceptar</button>
 		                         <button type="button" class="btn btn-default" value="Submit" id="cancelarEnvio">Cancelar</button>       
 	                            	
-	                             <p class="help-block">Número de Flete</p>
-		                    	 <input class="form-control" id='areaflete' name='flete' disabled>
+	                             
 		                 </form>
 						</div>
+						
                     </div>
 <!--/********************************************************FIN ENVIO********************************************************************/  -->
  <!--/******************************************HOSTING********************************************************************************/-->
@@ -150,11 +163,7 @@
 	                            
 	                            <div class="form-group input-group">
 		                    	 <br><br>
-		                    	 <label>Datos Hosting</label>
-			                        <p class="help-block">Usuario</p> 
-			                        <textarea class="form-control" rows="1" id="usuariohosting" disabled></textarea>
-			                         <p class="help-block">Contraseña</p>
-			                         <textarea class="form-control" rows="1" id="contrahosting" disabled></textarea>
+		                    	 
 			                    </div>
 		                 </form>
 						</div>
@@ -380,6 +389,10 @@ $('#aceptarFlete').click(function() {
 		 				$('#areaflete').val(txt);
 		 		 }
 		 	}
+			 
+			 $('#venta').hide();
+			 $('#flete').hide();
+			 $('#numFlete').show();
 });
 
 
@@ -422,6 +435,10 @@ $('#aceptarhosting').click(function() {
 		 				$('#contrahosting').val(contra);
 		 		}
 		 	}
+					 
+			$('#venta').hide();	
+			$('#hosting').hide();
+			$('#datosHosting').show();
 });
 /******************************************FIN HOSTING**************************************************+*/
 
