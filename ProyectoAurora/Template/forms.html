@@ -268,7 +268,7 @@ $('#compra').click(function() {
 		 				txt += x[i].childNodes[0].nodeValue;
 		 			}
 		 			variableJS=txt;
-		 			alert(txt);
+		 			//alert(txt);
 		 			muestra(variableJS);
 		 		 }
 		 	}
@@ -303,11 +303,13 @@ $('#compra').click(function() {
 	 function muestra(exito){
 		 var exit = parseInt(exito);
 		 if (trim(tipoLib)=='D' && exit == 1 ){
+			 alert("Cobro Exitoso");
 		 	$('#hosting').show();
-		 }else if (trim(tipoLib)=='I' && exit == 1)
+		 }else if (trim(tipoLib)=='I' && exit == 1){
+			 alert("Cobro Exitoso");
 			 $('#flete').show();
-		 else if (exit==0){
-		 	 alert("NO te alcanza el Dinero");
+		 }else if (exit==0){
+		 	 alert("No te alcanza el Dinero");
 		 }else {
 			 alert("No existe el usuario");
 		 }
@@ -374,7 +376,7 @@ $('#aceptarFlete').click(function() {
 		 			for (i = 0; i < x.length; i++){
 		 				txt += x[i].childNodes[0].nodeValue;
 		 			}
-		 			    alert("defsd  "+ txt);
+		 			    //alert("defsd  "+ txt);
 		 				$('#areaflete').val(txt);
 		 		 }
 		 	}
@@ -418,9 +420,7 @@ $('#aceptarhosting').click(function() {
 		 				var contra = x[0].lastChild.textContent;
 		 				$('#usuariohosting').val(usuario);
 		 				$('#contrahosting').val(contra);
-		 			//alert(x[0].firstChild.attributes.tagName);   
-		 			//$('#datoshosting').val(txt);
-		 		 }
+		 		}
 		 	}
 });
 /******************************************FIN HOSTING**************************************************+*/
