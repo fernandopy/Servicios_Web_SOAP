@@ -21,6 +21,49 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<script src="./js/jsonQ-master/jsonQ.min.js"></script>
 	
+	<script>
+	
+	function valor_celda(celda){
+        //alert(celda.innerHTML);
+        var res = limpia(celda.innerHTML);
+        
+        if(res != null){
+            var js = creaJson(res);
+            var obj = JSON.parse(js);
+          	var lib = jsonQ(obj);
+          	var cadena = "DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
+        	"PRECIO: $"+lib.find('costo').value()+"\n\n";
+            var x = confirm(cadena);
+        	if(x == true){
+        		var nombres = "Titulo: "+lib.find('titulo').value()+","+"Autor: "+lib.find('autor').value()+","+
+            	"Precio: $"+lib.find('costo').value()+","+"Peso: "+lib.find('peso').value()+","+"Tipo: "+lib.find('tipo').value()+","+"Existencias: "+lib.find('existencias').value()+"\n\n";
+        		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
+        		pasarVariables(pagina, nombres);
+        	}
+        }
+    }
+	function takeMyRowAway(){
+        var tags_td = new Array();
+        var tags_id = new Array();
+        var tags_td=document.getElementsByTagName('tr');
+        for (i=0; i<tags_td.length; i++) {
+            if (tags_td[i].addEventListener) {   // IE9 y el resto
+                tags_td[i].addEventListener ("click", function () {valor_celda(this);}, false);
+            } 
+            else {
+                if (tags_td[i].attachEvent) {    // IE9 -
+                    tags_td[i].attachEvent ('onclick',  function () {valor_celda(this);}, false);
+                }
+            }
+        }
+    }
+    window.onload = function()
+    {
+        takeMyRowAway();
+        
+    };
+	</script>
+	
 </head>
 
 <body>
@@ -91,44 +134,34 @@
 <script src="http://localhost/libreria/Presentacion/aspecto/bootstrap/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 <script src="http://localhost/libreria/Presentacion/aspecto/bootstrap/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
 
-<script>
-var variableJS="mela pe";
-var txt="";
-var x ="";
-	
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.open("POST", "http://localhost/PROYECTO/Editorial/EditorialCarlos/servidor.php",true);
-xmlhttp.setRequestHeader("SOAPAction", "urn:miServidor#obtenerDatos");
+<script >
+var variableJS;
+//$(document).ready(function(){
+	   
+    
+    // show that something is loading
+    $('#response').html("<br><b>Loading grafica...</b>");
+    
+    $.ajax({
+        type: 'POST',
+        url: './ConexionBD/Conexion.php', 
+        data: $(this).serialize()
+    })
+    .done(function(data){
+    	variableJS = data;
+	})
 
+  .fail(function() {
+     
+        // just in case posting your form failed
+        alert( "Posting failed." );
+         
+    });
 
-xmlhttp.setRequestHeader("Content-Type", "text/xml");
+//});
 
-
-var xml ='<?xml version="1.0" encoding="utf-8"?>'+
-'<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
-  '<soap:Body>'+
-    '<getAllBookRequest xmlns="http://localhost/PROYECTO/Editorial/EditorialCarlos/servidor.php">'+
-    '<key>0</key>'+
-    '</getAllBookRequest>'+
-  '</soap:Body>'+
-'</soap:Envelope>';
-
-xmlhttp.send(xml);
-
-	 xmlhttp.onreadystatechange=function() {
-	 	
-		if (xmlhttp.readyState == 4){
-			x= xmlhttp.responseXML.getElementsByTagName("return");
-			for (i = 0; i < x.length; i++){
-				txt += x[i].childNodes[0].nodeValue;
-			}
-			variableJS=txt;
-			///alert(txt);		
-		 }
-		 
-	};
 		
-		alert('Loading Libros'+"\n"+'Dale click en Aceptar');
+ alert('Loading Libros'+"\n"+'Dale click en Aceptar');
 				
 </script>
 
@@ -136,45 +169,45 @@ xmlhttp.send(xml);
   	
 	//Builds the HTML Table out of myList.
 	$(document).ready(function(){
-	//alert(variableJS);
- 	var myList = JSON.parse(variableJS);
-	var selector = '#myTabla';
-    var columns = addAllColumnHeaders(myList, selector);
-    for (var i = 0 ; i < myList.length ; i++) 
-    {
-        var row$ = $('<tr id="mifila"/>');
-        for(var colIndex = 0 ; colIndex < columns.length ; colIndex++) 
-        {
-            var cellValue = myList[i][columns[colIndex]];
-            if (cellValue == null) { cellValue = ""; }
-            row$.append($('<td/>').html(cellValue));
-        }
-        $(selector).append(row$);
-    }
-	// Adds a header row to the table and returns the set of columns.
-	// Need to do union of keys from all records as some records may not contain
-	// all records
-	function addAllColumnHeaders(myList, selector)//arriba titulos
-	{
-	    var columnSet = [];
-	    var headerTr$ = $('<tr/>');
-	    for (var i = 0 ; i < myList.length ; i++) {
-	        var rowHash = myList[i];
-	        for (var key in rowHash) {
-	            if ($.inArray(key, columnSet) == -1){
-	                columnSet.push(key);
-	                headerTr$.append($('<th/>').html(key));
-	            }
+		//alert(variableJS);
+	 	var myList = JSON.parse(variableJS);
+		var selector = '#myTabla';
+	    var columns = addAllColumnHeaders(myList, selector);
+	    for (var i = 0 ; i < myList.length ; i++) 
+	    {
+	        var row$ = $('<tr id="mifila"/>');
+	        for(var colIndex = 0 ; colIndex < columns.length ; colIndex++) 
+	        {
+	            var cellValue = myList[i][columns[colIndex]];
+	            if (cellValue == null) { cellValue = ""; }
+	            row$.append($('<td/>').html(cellValue));
 	        }
+	        $(selector).append(row$);
 	    }
-	    $('#mythead').append(headerTr$);
-	    return columnSet;
-	} 
-
-	$('#dataTables-example').DataTable({
-                responsive: true
-        });
-	});
+		// Adds a header row to the table and returns the set of columns.
+		// Need to do union of keys from all records as some records may not contain
+		// all records
+		function addAllColumnHeaders(myList, selector)//arriba titulos
+		{
+		    var columnSet = [];
+		    var headerTr$ = $('<tr/>');
+		    for (var i = 0 ; i < myList.length ; i++) {
+		        var rowHash = myList[i];
+		        for (var key in rowHash) {
+		            if ($.inArray(key, columnSet) == -1){
+		                columnSet.push(key);
+		                headerTr$.append($('<th/>').html(key));
+		            }
+		        }
+		    }
+		    $('#mythead').append(headerTr$);
+		    return columnSet;
+		} 
+	
+		/*$('#dataTables-example').DataTable({
+	                responsive: true
+	        });*/
+});
 </script>
 
 <script>
@@ -189,7 +222,7 @@ xmlhttp.send(xml);
         }else return null;
     }
     function creaJson(cad){
-            var keys = ['isbn','titulo','autor','costo','tipo','inventario','peso'];
+            var keys = ['titulo','autor','costo','existencias','peso','tipo'];
             var json = "{";
             for(i=0;i<keys.length;i++){
                 var aux ='"'+keys[i]+'"';
@@ -201,26 +234,7 @@ xmlhttp.send(xml);
 </script>
 <script type="text/javascript">
         //<![CDATA[
-        function valor_celda(celda){
-            //alert(celda.innerHTML);
-            var res = limpia(celda.innerHTML);
-            
-            if(res != null){
-                var js = creaJson(res);
-                var obj = JSON.parse(js);
-              	var lib = jsonQ(obj);
-              	var cadena = "DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
-            	"PRECIO: $"+lib.find('costo').value()+"\n\n";
-                var x = confirm(cadena);
-            	if(x == true){
-            		var nombres = "Titulo: "+lib.find('titulo').value()+","+"Autor: "+lib.find('autor').value()+","+
-                	"Precio: $"+lib.find('costo').value()+","+"Peso: "+lib.find('peso').value()+","+"Tipo: "+lib.find('tipo').value()+"\n\n";
-            		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
-            		pasarVariables(pagina, nombres);
-            		//location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
-            	}
-            }
-        }
+        
         /***************************PASAR VALORES DE UNA PÁGINA A OTRA por la url ************************************************************/
         
         function pasarVariables(pagina, nombres) {
@@ -233,26 +247,7 @@ xmlhttp.send(xml);
         	}
         
         /************************************************************************************************************************/
-        function takeMyRowAway(){
-            var tags_td = new Array();
-            var tags_id = new Array();
-            var tags_td=document.getElementsByTagName('tr');
-            for (i=0; i<tags_td.length; i++) {
-                if (tags_td[i].addEventListener) {   // IE9 y el resto
-                    tags_td[i].addEventListener ("click", function () {valor_celda(this);}, false);
-                } 
-                else {
-                    if (tags_td[i].attachEvent) {    // IE9 -
-                        tags_td[i].attachEvent ('onclick',  function () {valor_celda(this);}, false);
-                    }
-                }
-            }
-        }
-        window.onload = function()
-        {
-            takeMyRowAway();
-            
-        };
+        
         
 </script>
 </body>
