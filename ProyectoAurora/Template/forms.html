@@ -105,6 +105,8 @@
 								<div id="numFlete" hidden>
 									<p class="help-block">Número de Flete</p>
 			                   		<input class="form-control" id='areaflete' name='flete' disabled>
+			                   		<br><br>
+			                   		<button type="button" class="btn btn-default" value="Submit" id="aceptar1">Aceptar</button>
 			                	</div>
 			                	<div id="datosHosting" hidden>
 			                		<label>Datos Hosting</label>
@@ -112,6 +114,8 @@
 			                        <textarea class="form-control" rows="1" id="usuariohosting" disabled></textarea>
 			                         <p class="help-block">Contraseña</p>
 			                         <textarea class="form-control" rows="1" id="contrahosting" disabled></textarea>
+			                         <br><br>
+			                         <button type="button" class="btn btn-default" value="Submit" id="aceptar2">Aceptar</button>
 			                	</div>
 							</div>
 <!-- ********************************************FIN VENTA********************************************************************************+ -->
@@ -299,7 +303,7 @@ $('#compra').click(function() {
 	 pesoLib = getDato(arrVariables[3]);//para escribir el peso en el combobox
 	 $('#peso').html(pesoLib);
 	 $('#pesoHost').html(pesoLib);
-	 /*VALIDA QUE DIV MOSTRAR DEPENDIENDO DEL TIPO DE LIBRO*********************************/
+	 /***********************VALIDA QUE DIV MOSTRAR DEPENDIENDO DEL TIPO DE LIBRO*********************************/
 	 
 	 
 	 tipoLib = getDato(arrVariables[4]);
@@ -343,6 +347,15 @@ $('#cancelarEnvio').click(function() {
 
 $('#cancelarHosting').click(function() {
 	location.href = "tables.html";
+});
+
+
+$('#aceptar1').click(function() {
+	location.href = "index.html";
+});
+
+$('#aceptar2').click(function() {
+	location.href = "index.html";
 });
 </script>
 
@@ -409,20 +422,20 @@ $('#aceptarhosting').click(function() {
 	var txt="";
 	var x ="";
 	 var xmlhttp = new XMLHttpRequest();
-	 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
-		xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#contratarHosting");
+	 xmlhttp.open("POST", "http://10.0.7.182/proyectoLibreria/wservices/host3.php",true);
+		xmlhttp.setRequestHeader("SOAPAction", "urn:host#contrata");
 		xmlhttp.setRequestHeader("Content-Type", "text/xml");
 		var xml =
 			 '<?xml version="1.0" encoding="utf-8"?>'+
 			 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
 			   '<soap:Body>'+
-			     '<contratarHostingRequest xmlns="http://localhost/PROYECTO/Central/conexionServicios.php">'+
-			     '<datosContratar>'+
+			     '<contrataRequest xmlns="http://10.0.7.182/proyectoLibreria/wservices/host3.php">'+
+			     '<datos2>'+
 			 	    '<id_pago>'+pago+'</id_pago>'+
 			 	    '<usuario>'+nombre+'</usuario>'+
 			 	   	'<tam>'+peso+'</tam>'+
-			 	 '</datosContratar>'+
-			     '</contratarHostingRequest>'+
+			 	 '</datos2>'+
+			     '</contrataRequest>'+
 			   '</soap:Body>'+
 			 '</soap:Envelope>';
 		xmlhttp.send(xml);
@@ -443,7 +456,7 @@ $('#aceptarhosting').click(function() {
 			$('#datosHosting').show();
 /***************************************************************************************************/
 });
-/******************************************FIN HOSTING**************************************************+*/
+/******************************************FIN HOSTING***************************************************/
 
 </script>
 </body>

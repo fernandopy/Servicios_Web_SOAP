@@ -189,7 +189,7 @@ xmlhttp.send(xml);
         }else return null;
     }
     function creaJson(cad){
-            var keys = ['isbn','autor','codigo','titulo','resumen','costo','tipo','pvp','peso','inventario'];
+            var keys = ['isbn','titulo','autor','costo','tipo','inventario','peso'];
             var json = "{";
             for(i=0;i<keys.length;i++){
                 var aux ='"'+keys[i]+'"';
@@ -210,11 +210,11 @@ xmlhttp.send(xml);
                 var obj = JSON.parse(js);
               	var lib = jsonQ(obj);
               	var cadena = "DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
-            	"PRECIO: $"+lib.find('pvp').value()+"\n\n";
+            	"PRECIO: $"+lib.find('costo').value()+"\n\n";
                 var x = confirm(cadena);
             	if(x == true){
             		var nombres = "Titulo: "+lib.find('titulo').value()+","+"Autor: "+lib.find('autor').value()+","+
-                	"Precio: $"+lib.find('pvp').value()+","+"Peso: "+lib.find('peso').value()+","+"Tipo: "+lib.find('tipo').value()+"\n\n";
+                	"Precio: $"+lib.find('costo').value()+","+"Peso: "+lib.find('peso').value()+","+"Tipo: "+lib.find('tipo').value()+"\n\n";
             		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
             		pasarVariables(pagina, nombres);
             		//location.href = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
