@@ -28,18 +28,35 @@
         var res = limpia(celda.innerHTML);
         
         if(res != null){
+        	/*sirve para crear un json con los datos del libro elegido */
             var js = creaJson(res);
             var obj = JSON.parse(js);
           	var lib = jsonQ(obj);
-          	var cadena = "DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
-        	"PRECIO: $"+lib.find('costo').value()+"\n\n";
-            var x = confirm(cadena);
-        	if(x == true){
-        		var nombres = "Titulo: "+lib.find('titulo').value()+","+"Autor: "+lib.find('autor').value()+","+
-            	"Precio: $"+lib.find('costo').value()+","+"Peso: "+lib.find('peso').value()+","+"Tipo: "+lib.find('tipo').value()+","+"Existencias: "+lib.find('existencias').value()+"\n\n";
-        		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
-        		pasarVariables(pagina, nombres);
-        	}
+          	
+          	var ext = lib.find('existencias').value();
+            var tipo = lib.find('tipo').value();
+            
+          	if (ext != 0 || tipo == 'D'){
+	          	/*Si da confirmar la compra se van a mandar los datos de la pagina table.html a venta.html*/
+          		var cadena = "DESEA COMPRAR ESTE LIBRO \n\n"+"TITULO: "+lib.find('titulo').value()+"\n\n"+"AUTOR: "+lib.find('autor').value()+"\n\n"+
+            	"PRECIO: $"+lib.find('costo').value()+"\n\n";
+              	
+          		var x = confirm(cadena);
+	        	if(x == true){
+	        		var nombres = "Titulo: "+lib.find('titulo').value()+","+"Autor: "+lib.find('autor').value()+","+
+	            	"Precio: $"+lib.find('costo').value()+","+"Peso: "+lib.find('peso').value()+","+"Tipo: "+lib.find('tipo').value()+"\n\n";
+	        		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/forms.html";
+	        		pasarVariables(pagina, nombres);
+	        	}
+          		
+          	}else{
+          		var bandera = confirm("NO TENEMOS ESE LIBRO" +"\n"+"Quieres buscar el libro en otra Libreria");
+          		if(bandera == true){
+	        		var nombres = "Titulo: "+lib.find('titulo').value()+"\n\n";
+	        		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/busqueda.html";
+	        		pasarVariables(pagina, nombres);
+          		}
+          	}
         }
     }
 	function takeMyRowAway(){
@@ -235,7 +252,7 @@ var variableJS;
 <script type="text/javascript">
         //<![CDATA[
         
-        /***************************PASAR VALORES DE UNA PÁGINA A OTRA por la url ************************************************************/
+/***************************PASAR VALORES DE UNA PÁGINA A OTRA por la url ************************************************************/
         
         function pasarVariables(pagina, nombres) {
         	  pagina +="?";
@@ -246,7 +263,7 @@ var variableJS;
         	  location.href=pagina;
         	}
         
-        /************************************************************************************************************************/
+/************************************************************************************************************************/
         
         
 </script>

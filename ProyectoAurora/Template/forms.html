@@ -269,8 +269,6 @@ $('#compra').click(function() {
 					     '</realizaCobroRequest>'+
 					   '</soap:Body>'+
 					 '</soap:Envelope>';
-	
-	
 			xmlhttp.send(xml);
 		
 			 xmlhttp.onload=function() {
@@ -361,6 +359,7 @@ $('#aceptar2').click(function() {
 
 
 <script>
+/******************************************ACEPTAR FLETE ******************************************************************************/
 $('#aceptarFlete').click(function() {
 			
 			var dir = $('#dirEnvio').val();
@@ -422,20 +421,20 @@ $('#aceptarhosting').click(function() {
 	var txt="";
 	var x ="";
 	 var xmlhttp = new XMLHttpRequest();
-	 xmlhttp.open("POST", "http://10.0.7.182/proyectoLibreria/wservices/host3.php",true);
-		xmlhttp.setRequestHeader("SOAPAction", "urn:host#contrata");
+	 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
+		xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#contratarHosting");
 		xmlhttp.setRequestHeader("Content-Type", "text/xml");
 		var xml =
 			 '<?xml version="1.0" encoding="utf-8"?>'+
 			 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
 			   '<soap:Body>'+
-			     '<contrataRequest xmlns="http://10.0.7.182/proyectoLibreria/wservices/host3.php">'+
-			     '<datos2>'+
+			     '<contratarHostingRequest xmlns="http://localhost/PROYECTO/Central/conexionServicios.php">'+
+			     '<datosContratar>'+
 			 	    '<id_pago>'+pago+'</id_pago>'+
 			 	    '<usuario>'+nombre+'</usuario>'+
 			 	   	'<tam>'+peso+'</tam>'+
-			 	 '</datos2>'+
-			     '</contrataRequest>'+
+			 	 '</datosContratar>'+
+			     '</contratarHostingRequest>'+
 			   '</soap:Body>'+
 			 '</soap:Envelope>';
 		xmlhttp.send(xml);

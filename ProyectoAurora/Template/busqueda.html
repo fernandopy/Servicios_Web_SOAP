@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Rastreo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Inicio</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i>Catalogo Libros</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Busca Libros
+                        </h1>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-6">
+<!-- ****************************************************************************************************************************+ -->
+                        <form role="form">
+
+
+                            	<div class="form-group">
+	                                <div class="form-group">
+		                                <input class="form-control" id='tituloLibro' name='tituloLibro'>
+		                                <p class="help-block">Titulo Libro</p>
+	                                </div>
+	                                 <div class="form-group">
+			                                <label>Elige La Librería de tu Preferencía</label>
+			                                <select class="form-control" id="libreria">
+			                                    <option value=libreria1>Librería Fernando</option>
+			                                    <option value=libreria2>Librería Viri</option>
+			                                    <option value=libreria3>Librería Carlos</option>
+			                                    <option value=libreria4>Librería Pablo</option>
+			                                    
+			                                    
+			                                </select>
+		                            </div>
+                            	
+	                            	<button type="button" class="btn btn-default"  id="busqueda">Buscar</button>
+	                            	<button type="button" class="btn btn-default"  id="cancelar">Cancelar</button>
+	                                <br><br>
+	                                
+	                                <div class="form-group">
+	                                	<label>Existencias </label>
+	                                	<textarea class="form-control" rows="1" id ="busquedatext"disabled></textarea>
+	                                	
+	                            	</div>
+	                            	<p class="help-block">existencias del libro que desesas buscar</p>
+                                
+                                
+                  				</div>
+<!-- ****************************************************************************************************************************+ -->
+					</div>
+            	</div>
+            </div>
+           
+        </div>
+        
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+ <script>
+$('#buscar').click(function() {
+	
+	var titulo = $('#titulolibro').val();
+	var libreria = $('#libreria').val();
+	//$('#rasteroText').val('Ya mero llega');
+	  var variableJS="mela pe";
+		var txt="";
+		var x ="";
+		 var xmlhttp = new XMLHttpRequest();
+		 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
+			xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#buscarSucursales");
+			xmlhttp.setRequestHeader("Content-Type", "text/xml");
+			var xml =
+				 '<?xml version="1.0" encoding="utf-8"?>'+
+				 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+				   '<soap:Body>'+
+				     '<buscarSucursalesRequest xmlns="http://localhost/PROYECTO/Central/conexionServicios.php">'+
+				     '<libro>'+ 
+				     '<titulo>'+titulo+'</titulo>'+
+				     '<libreria>'+libreria+'</libreria>'+
+				     '</libro>'+
+				     '</buscarSucursalesRequest>'+
+				   '</soap:Body>'+
+				 '</soap:Envelope>';
+
+
+		xmlhttp.send(xml);
+	
+		 xmlhttp.onload=function() {
+	 		
+	 	 	if (xmlhttp.readyState == 4){
+	 			x= xmlhttp.responseXML.getElementsByTagName("return");
+	 			for (i = 0; i < x.length; i++){
+	 				txt += x[i].childNodes[0].nodeValue;
+	 			}
+	 			variableJS=txt;
+	 				//alert(txt);
+	 				$('#busquedatext').val(txt);
+	 		 }
+	 	}
+});
+
+</script>
+ 
+<script>
+$('#cancelar').click(function() {
+	location.href = "index.html";
+});
+</script>
+<script>
+var cadVariables = location.search.substring(1,location.search.length);
+var arrVariables = cadVariables.split("&");
+
+function getDato(val){//separa el precio y tipo de libro de el libro
+	var arr = val.split("=");
+	var aux = unescape(arr[1]);
+	var aux1 = aux.split(":");
+	return aux1[1];
+	
+	
+}
+
+$('#tituloLibro').val(getDato(arrVariables[0]));
+</script>
+ 
+	
+</body>
+
+</html>
