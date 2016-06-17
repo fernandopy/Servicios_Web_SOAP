@@ -109,10 +109,12 @@
     <script src="js/bootstrap.min.js"></script>
     
  <script>
-$('#buscar').click(function() {
+$('#busqueda').click(function() {
 	
-	var titulo = $('#titulolibro').val();
+	var titulo = $('#tituloLibro').val();
+	titulo = titulo.toLowerCase();
 	var libreria = $('#libreria').val();
+	//alert(libreria);
 	//$('#rasteroText').val('Ya mero llega');
 	  var variableJS="mela pe";
 		var txt="";
@@ -145,8 +147,8 @@ $('#buscar').click(function() {
 	 				txt += x[i].childNodes[0].nodeValue;
 	 			}
 	 			variableJS=txt;
-	 				//alert(txt);
-	 				$('#busquedatext').val(txt);
+	 			//alert(txt);
+	 			$('#busquedatext').val(txt);
 	 		 }
 	 	}
 });
