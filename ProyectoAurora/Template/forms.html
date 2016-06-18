@@ -201,7 +201,7 @@
  	var cadVariables = location.search.substring(1,location.search.length);
 	var arrVariables = cadVariables.split("&");
 	
- 	function datosLibros(arr){
+ 	function datosLibros(arr){//separa datos libro
 	 	var cad = "";
 		for (i=0; i<arrVariables.length-2; i++) {
 			arrVariableActual = arrVariables[i].split("=");
@@ -421,14 +421,14 @@ $('#aceptarhosting').click(function() {
 	var txt="";
 	var x ="";
 	 var xmlhttp = new XMLHttpRequest();
-	 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
+	 xmlhttp.open("POST", "http://10.0.7.182/libreria/wservices/conexionServicios.php",true);
 		xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#contratarHosting");
 		xmlhttp.setRequestHeader("Content-Type", "text/xml");
 		var xml =
 			 '<?xml version="1.0" encoding="utf-8"?>'+
 			 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
 			   '<soap:Body>'+
-			     '<contratarHostingRequest xmlns="http://localhost/PROYECTO/Central/conexionServicios.php">'+
+			     '<contratarHostingRequest xmlns="http://10.0.7.182/libreria/wservices/conexionServicios.php">'+
 			     '<datosContratar>'+
 			 	    '<id_pago>'+pago+'</id_pago>'+
 			 	    '<usuario>'+nombre+'</usuario>'+
