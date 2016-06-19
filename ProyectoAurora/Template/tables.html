@@ -50,7 +50,7 @@
 	        	}
           		
           	}else{
-          		var bandera = confirm("NO TENEMOS ESE LIBRO" +"\n"+"Quieres buscar el libro en otra Libreria");
+          		var bandera = confirm("NO TENEMOS ESTE LIBRO" +"\n\n"+"TITULO : "+lib.find('titulo').value()+"\n\n"+"Quieres buscarlo en otra Libreria?");
           		if(bandera == true){
 	        		var nombres = "Titulo: "+lib.find('titulo').value()+"\n\n";
 	        		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/busqueda.html";
@@ -229,9 +229,10 @@ var variableJS;
 
 <script>
     function limpia (cad){
-        var test = cad.slice(0,3);
+        //alert(cad);
+    	var test = cad.slice(0,3);
         if(test!='<th'){
-            var aux= cad.substring(4);
+            var aux= cad.substring(4);//corta los primeros 4 caracteres
             var tam = aux.length;
             cad = aux.slice(0,tam-5);
             return  cad.split("</td><td>");
