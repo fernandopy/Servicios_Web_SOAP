@@ -198,8 +198,8 @@
     var nombre = "";
     var pesoLib;
     var tipoLib;
- 	var cadVariables = location.search.substring(1,location.search.length);
-	var arrVariables = cadVariables.split("&");
+ 	var cadVariables = location.search.substring(1,location.search.length);//regresa la parte de las variables y le quita el primer elemeno
+	var arrVariables = cadVariables.split("&");//separa todas la variables de la url
 	
  	function datosLibros(arr){//separa datos libro
 	 	var cad = "";
