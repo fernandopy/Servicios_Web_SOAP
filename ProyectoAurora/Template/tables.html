@@ -50,7 +50,7 @@
 	        	}
           		
           	}else{
-          		var bandera = confirm("NO TENEMOS ESTE LIBRO" +"\n\n"+"TITULO : "+lib.find('titulo').value()+"\n\n"+"Quieres buscarlo en otra Libreria?");
+          		var bandera = confirm("NO TENEMOS ESTE LIBRO" +"\n\n"+"TITULO : "+lib.find('titulo').value()+"\n\n"+"¿Quieres buscarlo en otra Libreria?");
           		if(bandera == true){
 	        		var nombres = "Titulo: "+lib.find('titulo').value()+"\n\n";
 	        		var pagina = "http://localhost/WORKECLIPSEXML/xml2/ProyectoAurora/Template/busqueda.html";
@@ -237,7 +237,9 @@ var variableJS;
             cad = aux.slice(0,tam-5);
             return  cad.split("</td><td>");
             //alert(typeof(res));
-        }else return null;
+        }else{
+        	return null;
+        }
     }
     function creaJson(cad){
             var keys = ['titulo','autor','costo','existencias','peso','tipo'];

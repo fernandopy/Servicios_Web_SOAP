@@ -125,11 +125,7 @@ $('#rastreo').click(function() {
 	 		
 	 	 	if (xmlhttp.readyState == 4){
 	 			x= xmlhttp.responseXML.getElementsByTagName("return");
-	 			for (i = 0; i < x.length; i++){
-	 				txt += x[i].childNodes[0].nodeValue;
-	 			}
-	 			variableJS=txt;
-	 				//alert(txt);
+	 				txt = x[0].childNodes[0].nodeValue;
 	 				$('#rasteroText').val(txt);
 	 		 }
 	 	}

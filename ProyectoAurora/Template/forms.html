@@ -201,14 +201,14 @@
  	var cadVariables = location.search.substring(1,location.search.length);//regresa la parte de las variables y le quita el primer elemeno
 	var arrVariables = cadVariables.split("&");//separa todas la variables de la url
 	
- 	function datosLibros(arr){//separa datos libro
+ 	function datosLibros(){//separa datos libro
 	 	var cad = "";
 		for (i=0; i<arrVariables.length-2; i++) {
 			arrVariableActual = arrVariables[i].split("=");
 			cad += unescape(arrVariableActual[1])+"\n";
 			
 		}
-		$('#area').html(cad);
+		$('#area').html(cad);//cuando se seprararon los datos de los libros los mando al txt area
 		
 		return arrVariables[2];
  	}
@@ -220,7 +220,7 @@
 		$('#importe').html(aux2[1]);
 		
 	}
-	function getDato(val){//separa el precio y tipo de libro de el libro
+	function getDato(val){//separa el precio y tipo de libro
 		var arr = val.split("=");
 		var aux = unescape(arr[1]);
 		var aux1 = aux.split(":");
@@ -237,7 +237,7 @@
 		
 		
 	}*/
-	var val = datosLibros(arrVariables);
+	var val = datosLibros();
 	precio(val);
 	
  </script>

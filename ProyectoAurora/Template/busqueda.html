@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rastreo</title>
+    <title>Busqueda</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +62,7 @@
 
                             	<div class="form-group">
 	                                <div class="form-group">
-		                                <input class="form-control" id='tituloLibro' name='tituloLibro'>
+		                                <input class="form-control" id='tituloLibro' name='tituloLibro' disabled>
 		                                <p class="help-block">Titulo Libro</p>
 	                                </div>
 	                                 <div class="form-group">
@@ -85,7 +85,7 @@
 	                                	<textarea class="form-control" rows="1" id ="busquedatext"disabled></textarea>
 	                                	
 	                            	</div>
-	                            	<p class="help-block">Existencias del libro que desesas buscar</p>
+	                            	<p class="help-block">Existencias del Libro</p>
                                 
                                 
                   				</div>
@@ -127,10 +127,10 @@ $('#busqueda').click(function() {
 				 '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
 				   '<soap:Body>'+
 				     '<buscarSucursalesRequest xmlns="http://localhost/PROYECTO/Central/conexionServicios.php">'+
-				     '<libro>'+ 
-				     '<titulo>'+titulo+'</titulo>'+
-				     '<libreria>'+libreria+'</libreria>'+
-				     '</libro>'+
+					     '<libro>'+ 
+					     	'<titulo>'+titulo+'</titulo>'+
+					     	'<libreria>'+libreria+'</libreria>'+
+					     '</libro>'+
 				     '</buscarSucursalesRequest>'+
 				   '</soap:Body>'+
 				 '</soap:Envelope>';
@@ -142,12 +142,8 @@ $('#busqueda').click(function() {
 	 		
 	 	 	if (xmlhttp.readyState == 4){
 	 			x= xmlhttp.responseXML.getElementsByTagName("return");
-	 			for (i = 0; i < x.length; i++){
-	 				txt += x[i].childNodes[0].nodeValue;
-	 			}
-	 			variableJS=txt;
-	 			//alert(txt);
-	 			$('#busquedatext').val(txt);
+	 				txt = x[0].childNodes[0].nodeValue;
+	 				$('#busquedatext').val(txt);
 	 		 }
 	 	}
 });
