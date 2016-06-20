@@ -7,6 +7,7 @@ class  Conexion{
 
 	function conex(){
 		$cadena = "host = 'localhost' port ='5432' dbname = 'Libreria' user = 'postgres' ";
+		//$cadena = "host = '10.0.7.182' port ='5432' dbname = 'Librerias' user = 'postgres' password='laboratorio'";
 		//usar la funcion  pg_connect
 
 		$con = pg_connect($cadena)or die("Error en la Consulta SQL");

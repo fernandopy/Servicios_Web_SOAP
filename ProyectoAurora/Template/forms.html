@@ -81,7 +81,7 @@
 		                                <p class="help-block">Nombre</p>
 		                                <input class="form-control" id='nombre' name='nombre' value="Ruben Fernando">
 		                                <p class="help-block">Número de cuenta</p>
-		                                <input class="form-control" id='numCuenta' name='numCuenta' value="10" >
+		                                <input class="form-control" id='numCuenta' name='numCuenta' value="100" >
 		                                <p class="help-block">Importe</p>
 		                                <div class="form-group input-group">
 			                                <span class="input-group-addon">$</span>
@@ -254,7 +254,8 @@ $('#compra').click(function() {
 			var txt="";
 			var x ="";
 			 var xmlhttp = new XMLHttpRequest();
-			 xmlhttp.open("POST", "http://localhost/PROYECTO/Banco/nuSoap.php",true);
+			 xmlhttp.open("POST", "http://10.0.7.182/libreria/wservices/bancoServer.php",true);
+			 //xmlhttp.open("POST", "http://localhost/PROYECTO/Banco/nuSoap.php",true);
 				xmlhttp.setRequestHeader("SOAPAction", "urn:nuSoap#realizaCobro");
 				xmlhttp.setRequestHeader("Content-Type", "text/xml");
 				var xml =
@@ -369,7 +370,9 @@ $('#aceptarFlete').click(function() {
 			var txt="";
 			var x ="";
 			 var xmlhttp = new XMLHttpRequest();
-			 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
+			 
+			xmlhttp.open("POST", "http://10.0.7.182/libreria/wservices/conexionServicios.php",true);
+			 //xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
 				xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#gestionarFlete");
 				xmlhttp.setRequestHeader("Content-Type", "text/xml");
 				var xml =
@@ -421,7 +424,8 @@ $('#aceptarhosting').click(function() {
 	var txt="";
 	var x ="";
 	 var xmlhttp = new XMLHttpRequest();
-	 xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
+	 xmlhttp.open("POST", "http://10.0.7.182/libreria/wservices/conexionServicios.php",true);
+	 //xmlhttp.open("POST", "http://localhost/PROYECTO/Central/conexionServicios.php",true);
 		xmlhttp.setRequestHeader("SOAPAction", "urn:servidor#contratarHosting");
 		xmlhttp.setRequestHeader("Content-Type", "text/xml");
 		var xml =

@@ -105,7 +105,9 @@ $('#rastreo').click(function() {
 		var txt="";
 		var x ="";
 		 var xmlhttp = new XMLHttpRequest();
-		 xmlhttp.open("POST", "http://localhost/PROYECTO/Flete/fleteServer.php",true);
+		 
+		xmlhttp.open("POST", "http://10.0.7.182/libreria/wservices/fleteServer.php",true);
+		 //xmlhttp.open("POST", "http://localhost/PROYECTO/Flete/fleteServer.php",true);
 			xmlhttp.setRequestHeader("SOAPAction", "urn:fleteServer#rastreo");
 			xmlhttp.setRequestHeader("Content-Type", "text/xml");
 			var xml =
