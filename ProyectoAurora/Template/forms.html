@@ -108,6 +108,7 @@
 			                   		<br><br>
 			                   		<button type="button" class="btn btn-default" value="Submit" id="aceptar1">Aceptar</button>
 			                	</div>
+			                	
 			                	<div id="datosHosting" hidden>
 			                		<label>Datos Hosting</label>
 			                        <p class="help-block">Usuario</p> 
@@ -228,15 +229,7 @@
 		
 		
 	}
-	/*function tipoLibro(val){//separa el precio de el libro
-		var arr = val.split("=");
-		var aux = unescape(arr[1]);
-		var aux1 = aux.split(":");
-		var tipo = aux1[1];
-		return tipo;
-		
-		
-	}*/
+	
 	var val = datosLibros();
 	precio(val);
 	
@@ -280,7 +273,7 @@ $('#compra').click(function() {
 		 				txt += x[i].childNodes[0].nodeValue;
 		 			}
 		 			variableJS=txt;
-		 			//alert(txt);
+		 			/*depende de lo que me regrese el banco ya sea 1 , 0 ,-1*/
 		 			muestra(variableJS);
 		 		 }
 		 	}
@@ -294,7 +287,7 @@ $('#compra').click(function() {
 	 $("#nombreEnvio").val(nombre);
 	/*DATOS PARA HOSTING*/ 
 	 $("#nombreHost").val(nombre);
-	/*******************************************************/
+	/*********************************************************************************************************************/
 	
 	
 	$("#numCuentaEnvio").val($("#numCuenta").val());
@@ -304,13 +297,13 @@ $('#compra').click(function() {
 	 $('#pesoHost').html(pesoLib);
 	 /***********************VALIDA QUE DIV MOSTRAR DEPENDIENDO DEL TIPO DE LIBRO*********************************/
 	 
+/***********************************VALIDA QUE TIPO DE LIBRO ES****************************************************/
 	 
 	 tipoLib = getDato(arrVariables[4]);
 	 
 	 function trim (cad){//elimina espacios al inicio y al final de lacadena
 	 	 return cad.replace(/^\s+/g,'').replace(/\s+$/g,'');
 	 }
-
 
 	 function muestra(exito){
 		 var exit = parseInt(exito);
